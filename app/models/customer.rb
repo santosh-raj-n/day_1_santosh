@@ -1,3 +1,4 @@
 class Customer < ApplicationRecord
-  validates :email, uniqueness: true
+  validates :name, format: { with: /\A[a-zA-Z]+\z/, message: "Only letters are allowed" }
+  validates :email, presence: true, uniqueness: true
 end
