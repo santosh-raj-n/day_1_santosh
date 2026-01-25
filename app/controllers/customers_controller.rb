@@ -1,8 +1,10 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: %i[ show edit update destroy ]
+  before_action :set_customer, except: [ :index, :new, :create, :blacklisted_customers ]
 
   # GET /customers or /customers.json
   def index
+    # list_of_customers = [ 1, 2, 3, 4 ]
+    # @customers = Customer.blacklisted_customers(list_of_customers)
     @customers = Customer.all
   end
 
@@ -10,6 +12,9 @@ class CustomersController < ApplicationController
   def show
   end
 
+  def blacklisted_customers
+    @customers = Customer.blacklisted_customers
+  end
   # GET /customers/new
   def new
     @customer = Customer.new
