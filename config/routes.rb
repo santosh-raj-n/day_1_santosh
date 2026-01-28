@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   resources :products do
     collection do
-      get "out-of-stock", to: "products#out_of_stock"
+      get "out-of-stock"
     end
   end
 
   resources :customers do
     collection do
-      get "blacklisted-customers", to: "customers#blacklisted_customers"
+      get "blacklisted-customers"
     end
   end
 

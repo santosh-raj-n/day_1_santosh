@@ -1,2 +1,30 @@
-// Sassy
 @import "bootstrap";
+
+/* ===============================
+   Trix editor (FORM only)
+   =============================== */
+
+trix-editor {
+  min-height: 220px;
+  padding: 14px;
+  font-size: 15px;
+  line-height: 1.6;
+
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+trix-editor:focus {
+  outline: none;
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* ===============================
+   Displayed content (SHOW page)
+   =============================== */
+
+.trix-content {
+  line-height: 1.7;
+}

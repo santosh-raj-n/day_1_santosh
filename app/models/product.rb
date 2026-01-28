@@ -8,6 +8,7 @@ validates :description, length: { maximum: 500 }, allow_blank: true
 
 validate :product_must_be_active
 
+has_rich_text :feedback
 
 scope :out_of_stock, -> { where("stock <= ?", 0) }
 

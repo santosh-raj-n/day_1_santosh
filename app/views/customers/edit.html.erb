@@ -1,12 +1,7 @@
-<% content_for :title, "Editing customer" %>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3 class="mb-0">Editing customer</h3>
 
-<h1>Editing customer</h1>
+  <%= link_to "Back to customers", customers_path, class: "btn btn-outline-secondary btn-sm" %>
+</div>
 
 <%= render "form", customer: @customer %>
-
-<br>
-
-<div>
-  <%= link_to "Show this customer", @customer %> |
-  <%= link_to "Back to customers", customers_path %>
-</div>

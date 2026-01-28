@@ -8,12 +8,15 @@ class CustomersController < ApplicationController
     @customers = Customer.all
   end
 
-  # GET /customers/1 or /customers/1.json
-  def show
-  end
 
   def blacklisted_customers
-    @customers = Customer.blacklisted_customers
+    @list_of_customers = [ 3, 2, 5, 10 ]
+    @customers = Customer.blacklisted_customers(@list_of_customers)
+  end
+
+  # GET /customers/1 or /customers/1.json
+  def show
+    # raise params.inspect
   end
   # GET /customers/new
   def new
@@ -41,6 +44,7 @@ class CustomersController < ApplicationController
 
   # PATCH/PUT /customers/1 or /customers/1.json
   def update
+    # rails customer_params.inspect
     respond_to do |format|
       if @customer.update(customer_params)
         format.html { redirect_to @customer, notice: "Customer was successfully updated.", status: :see_other }
@@ -65,11 +69,11 @@ class CustomersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
-      @customer = Customer.find(params.expect(:id))
+      @customer = Customer.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def customer_params
-      params.expect(customer: [ :name, :email ])
+      params.expect(customer: [ :name, :email, :about_me ])
     end
 end
