@@ -1,9 +1,41 @@
-<div class="card">
+<div class="card shadow-sm">
   <div class="card-body">
-    <h4><%= @product.name %></h4>
+
+    <h4 class="mb-3"><%= @product.name %></h4>
+
 
     <p><strong>Description:</strong> <%= @product.description %></p>
     <p><strong>Price:</strong> ₹ <%= @product.price %></p>
+
+    <% if @product.product_pic.attached? %>
+  <div class="mb-3 d-flex flex-wrap gap-2">
+    <% @product.product_pic.each do |pic| %>
+      <%= image_tag url_for(pic),
+          class: "img-thumbnail",
+          style: "max-width: 200px;" %>
+    <% end %>
+  </div>
+<% else %>
+  <p class="text-muted">No product images uploaded.</p>
+<% end %>
+
+
+  <% if @product.invoice.attached? %>
+  <div class="mb-3">
+    <strong>Invoice:</strong><br>
+
+    <%= link_to "View Invoice",
+          rails_blob_path(@product.invoice, disposition: "inline"),
+          target: "_blank",
+          class: "btn btn-outline-primary mt-2" %>
+  </div>
+<% else %>
+  <p class="text-muted">No product invoice uploaded.</p>
+<% end %>
+
+
+
+
     <p><strong>Stock:</strong> <%= @product.stock %></p>
 
     <p>
@@ -14,19 +46,23 @@
         <span class="badge bg-danger">Inactive</span>
       <% end %>
     </p>
+
     <hr>
 
-<h5 class="mt-3">Feedback</h5>
+    <h5 class="mt-3">Feedback</h5>
 
-<% if @product.feedback.present? %>
-  <div class="border rounded p-3 bg-light">
-    <%= @product.feedback %>
-  </div>
-<% else %>
-  <p class="text-muted">No feedback added yet.</p>
-<% end %>
+    <% if @product.feedback.present? %>
+      <div class="border rounded p-3 bg-light">
+        <%= @product.feedback.body %>
+      </div>
+    <% else %>
+      <p class="text-muted">No feedback added yet.</p>
+    <% end %>
 
-    <%= link_to "Edit", edit_product_path(@product), class: "btn btn-warning" %>
-    <%= link_to "Back", products_path, class: "btn btn-secondary" %>
+    <div class="d-flex gap-2 mt-3">
+      <%= link_to "Edit", edit_product_path(@product), class: "btn btn-warning" %>
+      <%= link_to "Back", products_path, class: "btn btn-secondary" %>
+    </div>
+
   </div>
 </div>

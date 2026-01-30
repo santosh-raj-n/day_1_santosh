@@ -15,6 +15,20 @@
             <%= f.label :email, class: "form-label fw-semibold" %>
             <%= f.email_field :email, class: "form-control" %>
           </div>
+        <div class="mb-3">
+  <%= f.label :dob, "Date of Birth", class: "form-label" %>
+  <%= f.date_field :dob, class: "form-control" %>
+</div>
+
+<div class="mb-3">
+  <%= f.label :phone_number, "Phone Number", class: "form-label" %>
+  <%= f.number_field :phone_number, class: "form-control", placeholder: "Enter phone number" %>
+</div>
+          <div class="mb-3">
+  <%= f.label :profile_pic, class: "form-label fw-semibold" %>
+  <%= f.file_field :profile_pic, class: "form-control" %>
+</div>
+
 
          <div class="mb-3">
   <%= f.label :about_me, "About me", class: "form-label fw-semibold" %>
@@ -23,8 +37,6 @@
     <%= f.rich_text_area :about_me %>
   </div>
 </div>
-
-
 
           <div class="d-flex gap-2 mt-4">
             <%= f.submit class: "btn btn-primary" %>

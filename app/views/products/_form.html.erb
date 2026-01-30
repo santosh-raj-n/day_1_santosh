@@ -1,7 +1,7 @@
 <div class="card shadow-sm">
   <div class="card-body">
 
-    <%= form_with(model: product, local: true) do |form| %>
+    <%= form_with(model: product, local: true, multipart: true) do |form| %>
 
       <% if product.errors.any? %>
         <div class="alert alert-danger">
@@ -17,8 +17,18 @@
       </div>
 
       <div class="mb-3">
+        <%= form.label :product_pic, "Product Image", class: "form-label fw-semibold" %>
+        <%= form.file_field :product_pic, class: "form-control", accept: "image/*", multiple:true %>
+      </div>
+
+      <div class="mb-3">
         <%= form.label :description, class: "form-label fw-semibold" %>
         <%= form.text_area :description, class: "form-control", rows: 3 %>
+      </div>
+      
+      <div class="mb-3">
+        <%= form.label :invoice, "Product Invoice", class: "form-label fw-semibold" %>
+        <%= form.file_field :invoice, class: "form-control" %>
       </div>
 
       <div class="mb-3">
@@ -36,10 +46,9 @@
         <%= form.label :is_active, "Active", class: "form-check-label" %>
       </div>
 
-      <!-- ✅ ActionText Feedback -->
+      <!-- ActionText -->
       <div class="mb-3">
         <%= form.label :feedback, "Feedback", class: "form-label fw-semibold" %>
-
         <div class="border rounded p-2 bg-white">
           <%= form.rich_text_area :feedback %>
         </div>

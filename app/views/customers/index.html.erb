@@ -3,12 +3,14 @@
 <div class="mb-3">
   <%= link_to "Add Customer", new_customer_path, class: "btn btn-success" %>
 </div>
+
 <table class="table table-bordered table-hover">
   <thead class="table-dark">
     <tr>
       <th>Name</th>
       <th>Email</th>
-      <th style="width: 200px;">Actions</th>
+      <th>About Me</th>
+      <th style="width: 220px;">Actions</th>
     </tr>
   </thead>
 
@@ -17,17 +19,28 @@
       <tr>
         <td><%= customer.name %></td>
         <td><%= customer.email %></td>
+
+        <td>
+          <% if customer.about_me.present? %>
+            <%= truncate(
+                  customer.about_me.body.to_plain_text,
+                  length: 60
+                ) %>
+          <% else %>
+            <span class="text-muted">—</span>
+          <% end %>
+        </td>
+
         <td>
           <%= link_to "View", customer, class: "btn btn-sm btn-info" %>
           <%= link_to "Edit", edit_customer_path(customer), class: "btn btn-sm btn-warning" %>
           <%= link_to "Delete",
-            customer_path(customer),
-            data: {
-              turbo_method: :delete,
-              turbo_confirm: "Are you sure?"
-            },
-            class: "btn btn-sm btn-danger" %>
-
+                customer_path(customer),
+                data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                },
+                class: "btn btn-sm btn-danger" %>
         </td>
       </tr>
     <% end %>

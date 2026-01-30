@@ -1,4 +1,7 @@
 class Product < ApplicationRecord
+has_many_attached :product_pic
+has_one_attached :invoice
+has_rich_text :feedback
 # validates :stock, numericality: true
 # validates :stock, numericality: {
 #   greater_than_or_equal_to: 5,
@@ -7,8 +10,6 @@ class Product < ApplicationRecord
 validates :description, length: { maximum: 500 }, allow_blank: true
 
 validate :product_must_be_active
-
-has_rich_text :feedback
 
 scope :out_of_stock, -> { where("stock <= ?", 0) }
 

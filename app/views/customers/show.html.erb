@@ -2,6 +2,35 @@
   <div class="card-body">
     <h4><%= @customer.name %></h4>
     <p class="text-muted"><%= @customer.email %></p>
+    <% if @customer.profile_pic.attached? %>
+  <div class="mb-3">
+    <%= image_tag @customer.profile_pic,
+        class: "img-thumbnail",
+        style: "max-width: 200px;" %>
+  </div>
+<% else %>
+  <p class="text-muted">No profile picture uploaded.</p>
+<% end %>
+<hr>
+<p>
+  <strong>Date of Birth:</strong>
+  <%= @customer.dob.present? ? @customer.dob.strftime("%d %B %Y") : "Not provided" %>
+</p>
+
+<p>
+  <strong>Phone Number:</strong>
+  <%= @customer.phone_number.present? ? @customer.phone_number : "Not provided" %>
+</p>
+
+<h5>About Me</h5>
+
+<% if @customer.about_me.present? %>
+  <div class="border rounded p-3 bg-light">
+    <%= @customer.about_me %>
+  </div>
+<% else %>
+  <p class="text-muted">No information added yet.</p>
+<% end %>
 
     <%= link_to "Edit", edit_customer_path(@customer), class: "btn btn-warning" %>
     <%= link_to "Back", customers_path, class: "btn btn-secondary" %>
